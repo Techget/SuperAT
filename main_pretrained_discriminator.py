@@ -20,7 +20,7 @@ torch.autograd.set_detect_anomaly(True)
 
 # hyper parameter
 # convert to use arg parser
-epochs=25
+epochs=100
 lr=3e-4
 alpha=0.1
 gamma=15
@@ -35,7 +35,7 @@ gen_discrim_loss_weight = 0.1 # for the loss of discriminator with input generat
 loss_log_interval = 20
 image_log_interval = 200
 sample_size = 16
-checkpoint_dir='./checkpoints'
+checkpoint_dir='./train_vae_with_pretrained_discriminator/checkpoints'
 
 
 # For reproducibility
