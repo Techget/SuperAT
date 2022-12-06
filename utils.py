@@ -26,8 +26,8 @@ def plot_loss(loss_list):
 
 
 
-def save_checkpoint(model, model_dir, epoch):
-    path = os.path.join(model_dir, model.name)
+def save_checkpoint(model, model_dir, epoch, name):
+    path = os.path.join(model_dir, name)
 
     # save the checkpoint.
     if not os.path.exists(model_dir):
@@ -36,17 +36,17 @@ def save_checkpoint(model, model_dir, epoch):
 
     # notify that we successfully saved the checkpoint.
     print('=> saved the model {name} to {path}'.format(
-        name=model.name, path=path
+        name=name, path=path
     ))
 
 
-def load_checkpoint(model, model_dir):
-    path = os.path.join(model_dir, model.name)
+def load_checkpoint(model, model_dir, name):
+    path = os.path.join(model_dir, name)
 
     # load the checkpoint.
     checkpoint = torch.load(path)
     print('=> loaded checkpoint of {name} from {path}'.format(
-        name=model.name, path=(path)
+        name=name, path=(path)
     ))
 
     # load parameters and return the checkpoint's epoch and precision.

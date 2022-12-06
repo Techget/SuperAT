@@ -31,12 +31,12 @@ class VAE(lightningVAE):
         mu = self.fc_mu(x)
         log_var = self.fc_var(x)
         p, q, z = self.sample(mu, log_var)
-        return self.decoder(z), mu, log_var
+        return self.decoder(z), mu, log_var, p, q
 
     def reconstruction_loss(self, x_reconstructed, x):
         return F.mse_loss(x_reconstructed, x)
 
-    def kl_divergence_loss(self, mu, log_var):
+    def kl_divergence_loss(self, p, q):
         # return torch.mean(-0.5 * torch.sum(1 + log_var - mu ** 2 - log_var.exp(), dim = 1), dim = 0)
         kl = torch.distributions.kl_divergence(q, p)
         kl = kl.mean()
