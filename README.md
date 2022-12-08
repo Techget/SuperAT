@@ -1,13 +1,3 @@
-```
-python3 main_pretrained_discriminator.py
-```
-
-pretrain VAE to return image with little modification to fool the trained model
-
-
-next step, with trained model(discriminator) and trained VAE, we will update in the GAN-manner to improve the robustness of the trained model
-
-
 ## File structure
 - discriminator.py
     - Include the common classification methods, currenlty using resnet18
@@ -15,3 +5,10 @@ next step, with trained model(discriminator) and trained VAE, we will update in 
     - todo: use pre activated resnet 
 - vae.py
     - Include vanilla implementation of VAE
+    - reference to lightning VAE
+- main_pretrained_discriminator.py
+    - pretrain VAE to return image with little modification to fool the trained model
+    - both GENERATOR and Discriminator are updated
+    - `python3 main_pretrained_discriminator.py` to start training
+- test_adversarial_trained_model.py
+    - verify adversarial trained model on common data, not adversarial example
