@@ -4,7 +4,6 @@ import torchvision
 from torchvision.utils import make_grid
 import torchvision.transforms as transforms
 import numpy as np
-import matplotlib.pyplot as plt
 import torch
 from torch.autograd import Variable
 from dataloader import dataloader

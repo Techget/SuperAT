@@ -27,9 +27,12 @@ export CXXFLAGS="$CXXFLAGS -D__STDC_FORMAT_MACROS=1"
 export CC=gcc
 # pip install open_spiel
 pip install numpy
+pip install pytorch-lightning
 pip install absl-py
 pip install matplotlib
 pip install scipy
 pip install pandas
+pip install torchvision
+pip install pytorch-lightning-bolts
 
 python3 train_attacker.py
