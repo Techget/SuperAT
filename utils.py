@@ -32,7 +32,7 @@ def save_checkpoint(model, model_dir, epoch, name):
     # save the checkpoint.
     if not os.path.exists(model_dir):
         os.makedirs(model_dir)
-    torch.save({'state': model.state_dict(), 'epoch': epoch}, path)
+    torch.save({'model_state_dict': model.state_dict(), 'epoch': epoch}, path)
 
     # notify that we successfully saved the checkpoint.
     print('=> saved the model {name} to {path}'.format(
@@ -50,7 +50,7 @@ def load_checkpoint(model, model_dir, name):
     ))
 
     # load parameters and return the checkpoint's epoch and precision.
-    model.load_state_dict(checkpoint['state'])
+    model.load_state_dict(checkpoint['model_state_dict'])
     epoch = checkpoint['epoch']
     return epoch
 

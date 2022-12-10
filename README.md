@@ -12,3 +12,4 @@
     - `python3 main_pretrained_discriminator.py` to start training
 - test_adversarial_trained_model.py
     - verify adversarial trained model on common data, not adversarial example
+- reference to https://pytorch.org/tutorials/beginner/finetuning_torchvision_models_tutorial.html

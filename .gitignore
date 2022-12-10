@@ -1,3 +1,5 @@
 datasetDownload/*
 __pycache__/*
 runs/*
+superAT_attacker_checkpoints/*
+superAT_with_pretrained_vae_and_discriminator/*
