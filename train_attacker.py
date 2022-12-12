@@ -53,8 +53,7 @@ state_dict = os.path.join(
 defensor.load_state_dict(torch.load(state_dict))
 
 criterion = nn.CrossEntropyLoss().to(device)
-optim_gen=torch.optim.RMSprop(attacker.parameters(), lr=lr_attacker)
-# optim_Dis=torch.optim.RMSprop(discrim.parameters(), lr=lr_dis)
+optim_attacker=torch.optim.RMSprop(attacker.parameters(), lr=lr_attacker)
 
 example_input_images, _ = next(iter(data_loader))
 grid = torchvision.utils.make_grid(example_input_images)
@@ -90,9 +89,9 @@ def main():
             attacker_loss = vae_loss - total_attacker_output_to_defensor_CE_error
             total_attacker_loss += attacker_loss
 
-            optim_gen.zero_grad()
+            optim_attacker.zero_grad()
             attacker_loss.backward()
-            optim_gen.step()
+            optim_attacker.step()
 
             # tensorboard log
             writer.add_scalar("Loss/Minibatches_reconstruction_loss", reconstruction_loss, (i+1)*epoch)

@@ -94,16 +94,20 @@ for epoch in range(epochs):
         gen_loss = vae_loss - gen_output_to_discrim_CE_error
         total_gen_loss += gen_loss
 
-        gen_loss.backward()
-        optim_gen.step()
+        if i % 2 == 0:
+            optim_gen.zero_grad()
+            gen_loss.backward()
+            optim_gen.step()
 
         # train discriminator
         discrim_output_real_image = discrim(datav)
         disrim_real_image_CE = criterion(discrim_output_real_image, targets)
         discrim_loss = disrim_real_image_CE + gen_output_to_discrim_CE_error
         total_discrim_loss += discrim_loss
-        discrim_loss.backward()
-        optim_Dis.step()
+
+        if i %2 == 1:
+            discrim_loss.backward()
+            optim_Dis.step()
 
         # tensorboard log
         writer.add_scalar("Loss/Minibatches_reconstruction_loss", reconstruction_loss, i)
