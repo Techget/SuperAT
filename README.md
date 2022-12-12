@@ -10,7 +10,7 @@
 
 ## Plans for experiments
 
-There are roughly 2 steps to conduct the experiment to verify our theories:
+There are roughly 2 stages to conduct the experiment to verify our theories:
 
 1. Train attacker with pretained VAE (attacker) & resnet18 (defensor) on CIFAR10
     - Attacker gets updated while defensor remains the same during training.
@@ -32,11 +32,12 @@ There are roughly 2 steps to conduct the experiment to verify our theories:
 
 
 Current status/progress:
-    - As of 12 Dec 2022, runing experiment for step1
-        - Using a vanilla VAE as attacker and resnet18 as defensor
+
+- As of 12 Dec 2022, runing experiment for step1
+    - Using a vanilla VAE as attacker and resnet18 as defensor
 
 
-## File structure
+## File structure 
 - discriminator.py
     - Include the common classification methods, currenlty using resnet18
     - Obtain pretrained resnet18 from [Pytorch_CIFAR10](https://github.com/huyvnphan/PyTorch_CIFAR10#pytorch-models-trained-on-cifar-10-dataset)
