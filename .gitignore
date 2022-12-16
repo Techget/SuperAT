@@ -4,3 +4,4 @@ runs/*
 superAT_attacker_checkpoints/*
 superAT_with_pretrained_vae_and_discriminator/*
 tf/*
+artemis_script_train_attacker.pbs.*
