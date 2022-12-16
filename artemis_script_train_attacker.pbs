@@ -14,7 +14,7 @@ cd /project/RDS-FEI-tcar-RW/SuperAT
 module load llvm/14.0.0 python/3.8.2 magma/2.5.3 openmpi-gcc/3.1.5 cmake cuda/10.2.89
 module load binutils
 module load bazel
-module load glibc/2.17
+# module load glibc/2.14.1
 virtualenv --system-site-packages tf
 module load gcc
 source tf/bin/activate
