@@ -11,29 +11,29 @@ cd /project/RDS-FEI-tcar-RW/SuperAT
 # module load openmpi-gcc/3.1.5
 # module load clang/7.0.0
 # module load gcc/7.4.0
-module load llvm/14.0.0 python/3.8.2 magma/2.5.3 openmpi-gcc/3.1.5 cmake cuda/10.2.89
-module load binutils
-module load bazel
+module load llvm/14.0.0 python/3.8.2 magma/2.5.3 cuda/10.2.89 # openmpi-gcc/3.1.5 cmake 
+# module load binutils
+# module load bazel
 # module load glibc/2.14.1
 virtualenv --system-site-packages tf
-module load gcc
+# module load gcc
 source tf/bin/activate
 # export LD_LIBRARY_PATH=/usr/local/glibc-2.14/lib
 # pip install /usr/local/tensorflow/v100/cuda10.2/tensorflow-2.5.0-cp37-cp37m-linux_x86_64.whl
 # pip install /usr/local/pytorch/cuda10.2/torch-1.9.0a0+git6d45d7a-cp38-cp38-linux_x86_64.whl
 # pip install tensorflow_probability
-export CFLAGS="$CFLAGS -D__STDC_FORMAT_MACROS=1"
-export CPPFLAGS="$CPPFLAGS -D__STDC_FORMAT_MACROS=1"
-export CXXFLAGS="$CXXFLAGS -D__STDC_FORMAT_MACROS=1"
-export CC=gcc
+# export CFLAGS="$CFLAGS -D__STDC_FORMAT_MACROS=1"
+# export CPPFLAGS="$CPPFLAGS -D__STDC_FORMAT_MACROS=1"
+# export CXXFLAGS="$CXXFLAGS -D__STDC_FORMAT_MACROS=1"
+# export CC=gcc
 # pip install open_spiel
 pip install numpy
 pip install pytorch-lightning
-pip install absl-py
-pip install matplotlib
+# pip install absl-py
+# pip install matplotlib
 pip install scipy
 pip install pandas
-pip install torchvision
+# pip install torchvision
 pip install pytorch-lightning-bolts
 
 python3 train_attacker.py
