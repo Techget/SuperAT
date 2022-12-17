@@ -20,7 +20,7 @@ module load gcc
 source tf/bin/activate
 # export LD_LIBRARY_PATH=/usr/local/glibc-2.14/lib
 # pip install /usr/local/tensorflow/v100/cuda10.2/tensorflow-2.5.0-cp37-cp37m-linux_x86_64.whl
-pip install /usr/local/pytorch/cuda10.2/torch-1.9.0a0+git6d45d7a-cp38-cp38-linux_x86_64.whl
+# pip install /usr/local/pytorch/cuda10.2/torch-1.9.0a0+git6d45d7a-cp38-cp38-linux_x86_64.whl
 # pip install tensorflow_probability
 export CFLAGS="$CFLAGS -D__STDC_FORMAT_MACROS=1"
 export CPPFLAGS="$CPPFLAGS -D__STDC_FORMAT_MACROS=1"
