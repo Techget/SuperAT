@@ -61,7 +61,8 @@ optim_attacker=torch.optim.RMSprop(attacker.parameters(), lr=lr_attacker)
 example_input_images, _ = next(iter(data_loader))
 grid = torchvision.utils.make_grid(example_input_images)
 writer.add_image("images", grid)
-writer.add_graph(attacker, example_input_images.to(device))
+# comment out to run on yaoyu's machine
+# writer.add_graph(attacker, example_input_images.to(device))
 
 def main():
 
