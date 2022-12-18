@@ -35,5 +35,6 @@ pip install scipy
 pip install pandas
 # pip install torchvision
 pip install pytorch-lightning-bolts
+# pip install git+https://github.com/RobustBench/robustbench.git@v1.0
 
 python3 train_attacker.py

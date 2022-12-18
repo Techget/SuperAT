@@ -18,9 +18,9 @@ There are roughly 2 stages to conduct the experiment to verify our theories:
         - Example 'foolbox_attack_resnet18_example.py'
     - Objective: verify that attacker trained with our method can reach similar effect like other conventional attack methods
     - Related files
-        - train_attacker.py
-        - foolbox_attack_resnet18_example.py
-        - artemis_script_train_attacker.pbs
+        - training: `python3 train_attacker.py`
+        - evaluation: `python3 stage1_evaluate_attack_effect.py`
+        - run on usyd HPC: `qsub artemis_script_train_attacker.pbs`
     - TODO: explore advacned models / tricks / variations e.g. use large latent variable(Z) size etc.
 2. Adversarial train with attacker & defensor updated in turn 
     - Load pretrained attacker & defensor, train with our method, which improve/adapt attacker and defensor in turn. 

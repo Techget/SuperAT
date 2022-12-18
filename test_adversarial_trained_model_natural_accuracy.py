@@ -26,3 +26,5 @@ if __name__ == "__main__":
             correct += (predicted == labels).sum().item()
  
         print(f'Accuracy of the network on the 10000 test images: {100 * correct // total} %')
+
+        
