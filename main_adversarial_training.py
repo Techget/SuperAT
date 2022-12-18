@@ -14,6 +14,7 @@ from pytorch_lightning.utilities.seed import seed_everything
 from lightning_VAE import VAE
 from discriminator import DiscriminatorRes
 from torch.utils.tensorboard import SummaryWriter
+from robustbench.utils import load_model
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 torch.autograd.set_detect_anomaly(True)
@@ -51,11 +52,13 @@ gen=gen.to(device)
 
 
 # load pretrained resnet 18
-discrim=DiscriminatorRes().to(device)
-state_dict = os.path.join(
-  "state_dicts", "resnet18" + ".pt"
-)
-discrim.load_state_dict(torch.load(state_dict))
+# discrim=DiscriminatorRes().to(device)
+# state_dict = os.path.join(
+#   "state_dicts", "resnet18" + ".pt"
+# )
+# discrim.load_state_dict(torch.load(state_dict))
+discrim = load_model(model_name='Rebuffi2021Fixing_70_16_cutmix_extra', dataset='cifar10', threat_model='Linf')
+discrim = discrim.to(device)
 
 criterion = nn.CrossEntropyLoss().to(device)
 optim_gen=torch.optim.RMSprop(gen.parameters(), lr=lr_gen)
@@ -64,8 +67,8 @@ optim_Dis=torch.optim.RMSprop(discrim.parameters(), lr=lr_dis)
 example_input_images, _ = next(iter(data_loader))
 grid = torchvision.utils.make_grid(example_input_images)
 writer.add_image("images", grid)
-writer.add_graph(gen, example_input_images.to(device))
-writer.add_graph(discrim, example_input_images.to(device))
+# writer.add_graph(gen, example_input_images.to(device)) # comment out to run on yaoyu's machine
+# writer.add_graph(discrim, example_input_images.to(device))
 
 for epoch in range(epochs):
     total_vae_loss = 0
