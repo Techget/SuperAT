@@ -16,7 +16,7 @@ from lightning_VAE import VAE
 # attack the same pre-trained model, compare the accuracy 
 def main():
     x_test, y_test = load_cifar10(n_examples=2)
-    print(y_test) # => [3, 8, 8, 0, 6, 6, 1, 6, 3 ...]
+    # print(y_test) # => [3, 8, 8, 0, 6, 6, 1, 6, 3 ...]
     model = load_model(model_name='Carmon2019Unlabeled', dataset='cifar10', threat_model='Linf')
 
     # PGD attack the model

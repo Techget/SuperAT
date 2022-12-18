@@ -23,18 +23,18 @@ There are roughly 2 stages to conduct the experiment to verify our theories:
         - run on usyd HPC: `qsub artemis_script_train_attacker.pbs`
     - TODO: explore advacned models / tricks / variations e.g. use large latent variable(Z) size etc.
 2. Adversarial train with attacker & defensor updated in turn 
-    - Load pretrained attacker & defensor, train with our method, which improve/adapt attacker and defensor in turn. 
-    - Benchmark our adversarial trained defensor with SOTA with RobustBench
+    - Load pretrained attacker & defensor (either non adversarial trained or adversarial trained from model zoo of robustbench), train with our method, which improve/adapt attacker and defensor in turn. 
+    - Benchmark our adversarial trained defensor with SOTA in RobustBench
     - Objective: model adversarial trained with our approach gives higher robustness with similar level of accurarcy on non-adversarial examples.
     - Related files:
-        - main_adversarial_training.py (WIP)
-    - TODO: provide PoC of our proposing adversarial training paradigm, and fine tune
+        - training:  `python3 main_adversarial_training.py`
+        - evaluation: `python3 stage2_evaluate_adversarial_trained_model.py` (using Autoattack to evaluate) [WIP]
 
 
 Current status/progress:
 
-- As of 12 Dec 2022, runing experiment for step1
-    - Using a vanilla VAE as attacker and resnet18 as defensor
+- As of 18 Dec 2022, runing experiment for step1
+    - Using a vanilla VAE as attacker and Rebuffi2021Fixing_70_16_cutmix_extra from robustbench as defensor, the defensor is pre-adversarial-trained
 
 
 ## File structure 
