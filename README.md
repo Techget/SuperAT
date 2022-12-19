@@ -19,8 +19,8 @@ There are roughly 2 stages to conduct the experiment to verify our theories:
     - Objective: verify that attacker trained with our method can reach similar effect like other conventional attack methods
     - Related files
         - training: `python3 train_attacker.py`
-        - evaluation: `python3 stage1_evaluate_attack_effect.py`
-        - run on usyd HPC: `qsub artemis_script_train_attacker.pbs`
+        - evaluation: update the ckpt file name in the script and run `python3 stage1_evaluate_attack_effect.py`
+        - run on usyd HPC: `qsub artemis_script_train_attacker.pbs` // Met OSError, haven't figured out the dependencies
     - TODO: explore advacned models / tricks / variations e.g. use large latent variable(Z) size etc.
 2. Adversarial train with attacker & defensor updated in turn 
     - Load pretrained attacker & defensor (either non adversarial trained or adversarial trained from model zoo of robustbench), train with our method, which improve/adapt attacker and defensor in turn. 
