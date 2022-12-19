@@ -33,6 +33,11 @@ There are roughly 2 stages to conduct the experiment to verify our theories:
 
 Current status/progress:
 
+- As of 19 Dec 2022
+    - Trained attacker reached 40% robust accuracy when attack pre adversarial trained model, which achieves 66% robustness accurracy with AutoAttack, reckon it is too good to be true.
+    - Inspected the reconstruction error, it is around 0.1-0.2 pixel wise difference, after training 32 epoches, it remains similar level since very beginning
+    - The training is running on yyao0814@172.17.34.20
+    - Also  we can check on tensorboard by using `scp -r yyao0814@172.17.34.20:/home/yyao0814/xuantong/SuperAT/runs/Dec18_17-29-36_gpu4-119-1 .`, then run the tensorboard locally
 - As of 18 Dec 2022, runing experiment for step1
     - Using a vanilla VAE as attacker and Rebuffi2021Fixing_70_16_cutmix_extra from robustbench as defensor, the defensor is pre-adversarial-trained
 
