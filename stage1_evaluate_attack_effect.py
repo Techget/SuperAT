@@ -12,7 +12,7 @@ from lightning_VAE import VAE
 # tensor" when there is insufficient memory
 
 checkpoint_dir='./superAT_attacker_checkpoints/'
-model_state_file_name = 'stage1_attacker_epoch_32' # Rename to your trained model
+model_state_file_name = 'attacker' # Rename to your trained model
 
 # Verify attacker effect
 # attack the same pre-trained model, compare the accuracy 
@@ -22,9 +22,9 @@ def main():
     model = load_model(model_name='Rebuffi2021Fixing_70_16_cutmix_extra', dataset='cifar10', threat_model='Linf')
 
     # PGD attack the model, or refer to the autoattack robustaccuracy on the robustbench github repo
-    # fmodel = fb.PyTorchModel(model, bounds=(0, 1))
-    # _, advs, success = fb.attacks.LinfPGD()(fmodel, x_test.to('cuda:0'), y_test.to('cuda:0'), epsilons=[8/255])
-    # print('Robust accuracy: {:.1%}'.format(1 - success.float().mean()))
+    fmodel = fb.PyTorchModel(model, bounds=(0, 1))
+    _, advs, success = fb.attacks.LinfPGD()(fmodel, x_test.to('cuda:0'), y_test.to('cuda:0'), epsilons=[8/255])
+    print('Robust accuracy: {:.1%}'.format(1 - success.float().mean()))
 
     # Our trained attacker attack the model
     attacker=VAE(input_height=32)
