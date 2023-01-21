@@ -18,6 +18,8 @@ from robustbench.utils import load_model
 import datetime
 import socket
 
+from koila import LazyTensor, lazy
+
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 torch.autograd.set_detect_anomaly(True)
 
@@ -86,6 +88,7 @@ def main():
         for i, (data, targets) in enumerate(data_loader, 0):
             datav = Variable(data).to(device)
             targets = Variable(targets).to(device)
+            datav, targets = lazy(datav, targets, batch=0)
 
             # train attacker
             x_reconstructed, mean, logvar, p, q = attacker.run_step(datav) # p, q are sampled from mean,logvar distribution
