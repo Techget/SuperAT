@@ -16,6 +16,7 @@ from torch.utils.tensorboard import SummaryWriter
 from discriminator import DiscriminatorRes
 from robustbench.utils import load_model
 import datetime
+import socket
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 torch.autograd.set_detect_anomaly(True)
@@ -122,7 +123,7 @@ def main():
         grid = torchvision.utils.make_grid(last_x_reconstructed)
         writer.add_image('Generated adversarial training example', grid, epoch)
 
-        utils.save_checkpoint(attacker, checkpoint_dir, epoch, 'attacker ' + date_time.strftime("%Y-%b-%d %H:%M"))
+        utils.save_checkpoint(attacker, checkpoint_dir, epoch, 'attacker ' + date_time.strftime("%Y-%b-%d %H:%M") + socket.gethostname())
 
 
 if __name__ == "__main__":
