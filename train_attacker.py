@@ -25,7 +25,7 @@ torch.autograd.set_detect_anomaly(True)
 
 # hyper parameter
 # convert to use arg parser
-epochs=150
+epochs=1500
 lr_attacker=2e-4
 batch_size = 4
 kld_weight = 0.001 # for VAE (Used in standar attack_defensor_loss_weight libraries)
@@ -84,6 +84,7 @@ def main():
         total_attacker_output_to_defensor_CE_error = 0
         total_attacker_loss = 0
         last_x_reconstructed = None
+        print("epoch=", epoch)
 
         for i, (data, targets) in enumerate(data_loader, 0):
             datav = Variable(data).to(device)
