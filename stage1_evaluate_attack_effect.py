@@ -13,6 +13,7 @@ from lightning_VAE import VAE
 
 checkpoint_dir='./superAT_attacker_checkpoints/'
 model_state_file_name = 'attacker 2023-Jan-14 16:35' # Rename to your trained model
+latent_dim = 1024
 
 # Verify attacker effect
 # attack the same pre-trained model, compare the accuracy 
@@ -27,7 +28,8 @@ def main():
     # print('Robust accuracy: {:.1%}'.format(1 - success.float().mean()))
 
     # Our trained attacker attack the model
-    attacker=VAE(input_height=32)
+    # attacker=VAE(input_height=32)
+    attacker = VAE(input_height=32,enc_type='resnet50', enc_out_dim=2048, latent_dim=latent_dim)
     load_checkpoint(attacker, checkpoint_dir, model_state_file_name)
     # attacker=VAE(input_height=32,).from_pretrained('cifar10-resnet18')
     # attacker = attacker.eval()

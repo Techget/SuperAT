@@ -7,3 +7,4 @@ tf/*
 artemis_script_train_attacker.pbs.*
 models/*
 data/*
+running_log

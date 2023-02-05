@@ -18,7 +18,7 @@ from robustbench.utils import load_model
 import datetime
 import socket
 
-from koila import LazyTensor, lazy
+# from koila import LazyTensor, lazy
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 torch.autograd.set_detect_anomaly(True)
@@ -88,7 +88,7 @@ def main():
         for i, (data, targets) in enumerate(data_loader, 0):
             datav = Variable(data).to(device)
             targets = Variable(targets).to(device)
-            datav, targets = lazy(datav, targets, batch=0)
+            # datav, targets = lazy(datav, targets, batch=0)
 
             # train attacker
             x_reconstructed, mean, logvar, p, q = attacker.run_step(datav) # p, q are sampled from mean,logvar distribution
@@ -112,19 +112,19 @@ def main():
             optim_attacker.step()
 
             # tensorboard log
-            writer.add_scalar("Loss/Minibatches_reconstruction_loss", reconstruction_loss, (i+1)*epoch)
-            writer.add_scalar("Loss/Minibatches_kl_divergence_loss", kl_divergence_loss, (i+1)*epoch)
+            writer.add_scalar("Loss/Minibatches_reconstruction_loss", reconstruction_loss, (i+1)*(epoch+1))
+            writer.add_scalar("Loss/Minibatches_kl_divergence_loss", kl_divergence_loss, (i+1)*(epoch+1))
             writer.add_scalar("Loss/Minibatches_attacker_output_to_defensor_CE_error", 
-                attacker_output_to_defensor_CE_error, (i+1)*epoch)
-            writer.add_scalar("Loss/Minibatches_attacker_loss", attacker_loss, (i+1)*epoch)
+                attacker_output_to_defensor_CE_error, (i+1)*(epoch+1))
+            writer.add_scalar("Loss/Minibatches_attacker_loss", attacker_loss, (i+1)*(epoch+1))
 
-        writer.add_scalar("Loss/Epochs_total_vae_loss", total_vae_loss, epoch)
+        writer.add_scalar("Loss/Epochs_total_vae_loss", total_vae_loss, (epoch+1))
         writer.add_scalar("Loss/Epochs_total_attacker_output_to_defensor_CE_error", 
-            total_attacker_output_to_defensor_CE_error, epoch)
-        writer.add_scalar("Loss/Epochs_total_attacker_loss", total_attacker_loss, epoch)
+            total_attacker_output_to_defensor_CE_error, (epoch+1))
+        writer.add_scalar("Loss/Epochs_total_attacker_loss", total_attacker_loss, (epoch+1))
 
         grid = torchvision.utils.make_grid(last_x_reconstructed)
-        writer.add_image('Generated adversarial training example', grid, epoch)
+        writer.add_image('Generated adversarial training example', grid, (epoch+1))
 
         utils.save_checkpoint(attacker, checkpoint_dir, epoch, 'attacker ' + date_time.strftime("%Y-%b-%d %H:%M") + socket.gethostname())
 
